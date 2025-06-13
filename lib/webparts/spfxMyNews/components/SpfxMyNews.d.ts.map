@@ -1,1 +1,0 @@
-{"version":3,"file":"SpfxMyNews.d.ts","sourceRoot":"","sources":["../../../../src/webparts/spfxMyNews/components/SpfxMyNews.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,KAAK,MAAM,OAAO,CAAC;AAE/B,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,gBAAgB,CAAC;AAGvD,MAAM,CAAC,OAAO,OAAO,UAAW,SAAQ,KAAK,CAAC,SAAS,CAAC,gBAAgB,CAAC;IAChE,MAAM,IAAI,KAAK,CAAC,YAAY,CAAC,gBAAgB,CAAC;CAoCtD"}
