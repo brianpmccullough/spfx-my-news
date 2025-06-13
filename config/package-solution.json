@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-my-news-client-side-solution",
+    "id": "cdad5493-adb9-42bc-bf88-ef6f416f11d8",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.21.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "A combination of page author defined news stories along with personalized news stories."
+      },
+      "longDescription": {
+        "default": "A combination of page author defined news stories along with personalized news stories."
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "spfx-my-news Feature",
+        "description": "The feature that activates elements of the spfx-my-news solution.",
+        "id": "e1332c8a-37ea-4a06-98a8-f21290c713ad",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-my-news.sppkg"
+  }
+}
