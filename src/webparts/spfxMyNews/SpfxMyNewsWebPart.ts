@@ -5,11 +5,13 @@ import {
   type IPropertyPaneConfiguration
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import { IReadonlyTheme } from '@microsoft/sp-component-base';
+import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
 
 import * as strings from 'SpfxMyNewsWebPartStrings';
 import News from './components/News';
 import { INewsProps } from './components/INewsProps';
+import NewsService from '../../services/NewsService';
+import { INewsService } from '../../services/INewsService';
 
 export interface ISpfxMyNewsWebPartProps {
   description: string;
@@ -17,12 +19,14 @@ export interface ISpfxMyNewsWebPartProps {
 
 export default class SpfxMyNewsWebPart extends BaseClientSideWebPart<ISpfxMyNewsWebPartProps> {
 
+  private _newsService: INewsService;
   private _currentTheme: IReadonlyTheme | undefined;
 
   public render(): void {
     const element: React.ReactElement<INewsProps> = React.createElement(
       News,
       {
+        newsService: this._newsService,
         hasTeamsContext: !!this.context.sdks.microsoftTeams
       }
     );
@@ -31,6 +35,7 @@ export default class SpfxMyNewsWebPart extends BaseClientSideWebPart<ISpfxMyNews
   }
 
   protected onInit(): Promise<void> {
+    this._newsService = new NewsService(this.context);
     return Promise.resolve();
   }
 
@@ -40,17 +45,16 @@ export default class SpfxMyNewsWebPart extends BaseClientSideWebPart<ISpfxMyNews
     }
 
     this._currentTheme = currentTheme;
-    console.log(this._currentTheme);
-    const {
-      semanticColors
-    } = currentTheme;
+    this.setCSSVariables(this._currentTheme)
+  }
 
-    if (semanticColors) {
-      this.domElement.style.setProperty('--bodyText', semanticColors.bodyText || null);
-      this.domElement.style.setProperty('--link', semanticColors.link || null);
-      this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
-    }
-
+  private setCSSVariables(theme: IReadonlyTheme): void {
+    const semanticColors = theme.semanticColors || {};
+    const keys = Object.keys(semanticColors);
+    keys.forEach((key: keyof ISemanticColors) => {
+      const value = semanticColors[key];
+      this.domElement.style.setProperty(`--${key}`, value as string);
+    });
   }
 
   protected onDispose(): void {
